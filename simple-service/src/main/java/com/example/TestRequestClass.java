@@ -49,7 +49,7 @@ public class TestRequestClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        System.out.println("töten");
+        System.out.println("toeten");
 		//delete auction
         response = target.path("auction/33").request().delete();
         System.out.println(response);
