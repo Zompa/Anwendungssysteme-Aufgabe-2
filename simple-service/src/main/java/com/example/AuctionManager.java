@@ -30,6 +30,10 @@ public class AuctionManager {
 
 		//System.out.println(AuctionManager.getInstance().getAuction(Integer.parseInt("666")).getHighestBid());
 		System.out.println("init");
+
+		AuctionDetails details = new AuctionDetails("Tollster titel", "description", "example.com", 1000);
+		Auction auction = new Auction(details, 666);
+		auctions.add(auction);
 	}
 	
 	public static AuctionManager getInstance() {
