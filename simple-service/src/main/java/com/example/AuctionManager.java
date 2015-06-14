@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.example.auctionInformation.Auction;
 import com.example.auctionInformation.AuctionDetails;
+import com.example.auctionInformation.AuctionListEntry;
 import com.example.auctionInformation.AuctionRESTRuntimeException;
 import com.example.auctionInformation.Bid;
 
@@ -58,6 +59,16 @@ public class AuctionManager {
 		synchronized (auctions) {
 			return auctions.remove(auction);
 		}
+	}
+	
+	public AuctionListEntry[] getCurrentAuctions() {
+		AuctionListEntry[] result = new AuctionListEntry[auctions.size()];
+		int i=0;
+		for (Auction a: auctions) {
+			result[i] = new AuctionListEntry(a);
+			i++;
+		}
+		return result;
 	}
 
 }

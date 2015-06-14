@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.example.auctionInformation.Auction;
 import com.example.auctionInformation.AuctionDetails;
+import com.example.auctionInformation.AuctionListEntry;
 import com.example.auctionInformation.Bid;
 
 /**
@@ -47,14 +49,22 @@ public class AuctionResource {
 
     @GET
     @Path("/{auctionID}")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces({"application/xml","application/json"})
 	public Auction getAuction(@PathParam("auctionID") String auctionID) {
     	
     	return AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID));
 	}
     
+    @DELETE
+    @Path("/{auctionID}")
+    @Produces({"application/xml","application/json"})
+	public void deleteAuction(@PathParam("auctionID") String auctionID) {
+    	
+    	AuctionManager.getInstance().deleteAuction(Integer.parseInt(auctionID));
+	}
+    
     @POST
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes({"application/xml","application/json"})
 	public void createAuction(Auction auction) {
     	
     	AuctionManager.getInstance().addAuction(auction);
@@ -62,31 +72,39 @@ public class AuctionResource {
     
     @POST
     @Path("/{auctionID}/highestBid")
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes({"application/xml","application/json"})
+   // @Consumes(MediaType.APPLICATION_XML)
     public void makeBid(@PathParam("auctionID") String auctionID, Bid bid) {
     	AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID)).makeBid(bid);
     }
 
     @GET
     @Path("/{auctionID}/highestBid")
-    @Produces(MediaType.APPLICATION_XML)
-    
+   // @Produces(MediaType.APPLICATION_XML)
+    @Produces({"application/xml","application/json"})
     public Bid getHighestBid(@PathParam("auctionID") String auctionID) {
     	return AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID)).getHighestBid();
     }
     
     @GET
     @Path("/{auctionID}/auctionDetails")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces({"application/xml","application/json"})
     public AuctionDetails getAuctionDetails(@PathParam("auctionID") String auctionID) {
     	return AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID)).getAuctionDetails();
     }
       
     @PUT
     @Path("/{auctionID}/auctionDetails")
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes({"application/xml","application/json"})
     public void setAuctionDetails(@PathParam("auctionID") String auctionID, AuctionDetails auctionDetails) {
     	AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID)).setAuctionDetails(auctionDetails);;
     }
-
+    
+    @GET
+    @Path("/auctions")
+    @Produces({"application/xml","application/json"})
+	public AuctionListEntry[] getCurrentAuctions() {
+    	System.out.println("Auctionlist requested!");
+    	return AuctionManager.getInstance().getCurrentAuctions();
+	}
 }

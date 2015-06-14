@@ -20,15 +20,38 @@ public class TestRequestClass {
         WebTarget target = c.target(Main.BASE_URI);
     	Response response = target.path("auction").request().post(Entity.entity(auction, MediaType.APPLICATION_XML));
         System.out.println(response);
+
+		//create auction
+        details.title = "afafj";
+        auction = new Auction(details, 42);
+    	 response = target.path("auction").request().post(Entity.entity(auction, MediaType.APPLICATION_XML));
+        System.out.println(response);
+        
+		//create auction
+        details.title = "Baum";
+        auction = new Auction(details, 33);
+    	 response = target.path("auction").request().post(Entity.entity(auction, MediaType.APPLICATION_XML));
+        System.out.println(response);
         
         //send test bid
         Bid bid = new Bid("Christian", 300);
-    	response = target.path("auction/666/highestBid").request().post(Entity.entity(bid, MediaType.APPLICATION_XML));
+    	response = target.path("auction/666/highestBid").request().post(Entity.entity(bid, MediaType.APPLICATION_JSON));
         System.out.println(response);
         
         //change auction details
         details.title = "noch tollerer titel";
         response = target.path("auction/666/auctionDetails").request().put(Entity.entity(details, MediaType.APPLICATION_XML));
+        System.out.println(response);
+        System.out.println("schlafen");
+        try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        System.out.println("töten");
+		//delete auction
+        response = target.path("auction/33").request().delete();
         System.out.println(response);
 	}
 }

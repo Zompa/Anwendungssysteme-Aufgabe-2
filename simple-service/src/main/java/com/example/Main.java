@@ -54,7 +54,7 @@ public class Main {
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         
         Client c = ClientBuilder.newClient();
-        TestRequestClass.sendTestRequests(c);
+       // TestRequestClass.sendTestRequests(c);
 
         System.in.read();
         server.stop();
