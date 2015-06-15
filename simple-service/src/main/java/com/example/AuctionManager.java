@@ -31,8 +31,10 @@ public class AuctionManager {
 		//System.out.println(AuctionManager.getInstance().getAuction(Integer.parseInt("666")).getHighestBid());
 		System.out.println("init");
 
-		AuctionDetails details = new AuctionDetails("Tollster titel", "description", "example.com", 1000);
+		AuctionDetails details = new AuctionDetails("Ein altes Fahrrad", "Der Zustand ist den Bildern zu entnehmen. Das Rad ist fahrbereit, lediglich das Licht müsste kontrolliert werden. Die Reifen halten die Luft. Das Bremsgummi der Stempelbremse ist neu. Wittkoppsattel, originale Klingel, originaler Dynamo, originale Werkzeugtasche. Lohmannn Lampe, Speichenschloss mit Schlüssel. Schutznetze, originaler Kettenschutz usw.", "http://www.beautys.de/var/albums/altes%20fahrrad%20herrenrad.jpg?m=1401375651", 1434366241);
 		Auction auction = new Auction(details, 666);
+		Bid bid = new Bid("Manfred", 43);
+		auction.makeBid(bid);
 		auctions.add(auction);
 	}
 	
