@@ -14,3 +14,8 @@
 .nav-pills > li > a {
     color:black;
     }
+
+.debug-info{
+	font-size: 10px;
+	color: red;
+}
