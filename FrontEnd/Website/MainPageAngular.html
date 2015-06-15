@@ -62,11 +62,11 @@
 	  <table class="table">
 		  <tr>
 			<td>Höchstgebot</td>
-			<td>{{ auction.auctionDetails.highestBid | currency }}</td>
+			<td>{{ highestBid.value | currency }}</td>
 		  </tr>
 		  <tr>
 			<td>Höchstbietender</td>
-			<td></td>
+			<td>{{ highestBid.bidderName }}</td>
 		  </tr>
 		  <tr>
 			<td>Endet</td>

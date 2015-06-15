@@ -1,6 +1,14 @@
-app.controller('MainController', ['$scope', 'Auction', function($scope, Auction) { 
+app.controller('MainController', ['$scope', 'Auction', 'HighestBid', function($scope, Auction, HighestBid) { 
 
-  $scope.auction = Auction.query();
+  Auction.get({ id: 666 }, function(data) {
+    $scope.auction = data;
+  });
+  
+  HighestBid.get({ id: 666 }, function(data) {
+    $scope.highestBid = data;
+  });
+
+  //$scope.auction = Auction.query();
   // $scope.auction = Auction.get({666}, function(auction) {
 	
 
