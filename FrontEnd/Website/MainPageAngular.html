@@ -50,10 +50,10 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-5">
-				<img class="img-responsive" src="old_bike.jpg" alt="old bike">
+				<img class="img-responsive" ng-src="{{ auction.auctionDetails.imageURL }}" alt={{ auction.auctionDetails.title }}>
 			</div>
 			<div class="col-md-5">
-				<p>Sotheby’s verfügt seit 1969 über eine Niederlassung in Zürich, die erste des Unternehmens auf dem europäischen Kontinent. Heute finden Sie uns an der Talstrasse 83, direkt im Zentrum der Kunstszene und sehr nahe am Finanzviertel der Stadt. Unsere Niederlassung verfügt über spezialisierte Abteilungen, einen Auktionssaal und Ausstellungsflächen. Über das Jahr verteilt führen wir viele Veranstaltungen durch, u.a. Auktionen, Wander- und Verkaufsausstellungen und Vorträge.</p>
+				<p>{{ auction.auctionDetails.description }}</p>
 			</div>
 		</div>
 	</div>
@@ -62,15 +62,15 @@
 	  <table class="table">
 		  <tr>
 			<td>Höchstgebot</td>
-			<td>{{ highestBid | currency }}</td>
+			<td>{{ auction.auctionDetails.highestBid | currency }}</td>
 		  </tr>
 		  <tr>
 			<td>Höchstbietender</td>
-			<td>Moe</td>
+			<td></td>
 		  </tr>
 		  <tr>
 			<td>Endet</td>
-			<td> {{ endDate }}</td>
+			<td> {{ auction.auctionDetails.endDate | date }}</td>
 		  </tr>
 		</tbody>
 	  </table>
