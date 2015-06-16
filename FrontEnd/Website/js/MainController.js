@@ -1,21 +1,22 @@
-app.controller('MainController', ['$scope', 'Auction', 'HighestBid', function($scope, Auction, HighestBid) { 
-
-  Auction.get({ id: 666 }, function(data) {
-    $scope.auction = data;
-  });
-  
+ app.controller('MainController', ['$scope', 'HighestBid', '$resource', function($scope, HighestBid, $resource) { 
   HighestBid.get({ id: 666 }, function(data) {
     $scope.highestBid = data;
-  });
+ 
+ 
+ var src = $resource('http://localhost:8080/myapp/auction/:id',
+              {id: "@id", cmd: "@cmd"}, 
+              {
+                auctions: { method: "GET", params: {}, isArray:true },
+                auction: { method: "GET", params: { id: 0 } },         
+				
+                //CreateTodo: { method: "POST", params: { content: "", order: 0, done: false } },
+                //UpdateTodo: { method: "PATCH", params: { /*...*/ } },
+                //DeleteTodo: { method: "DELETE", params: { id: 0 } },
+                //ResetTodos: { method: "GET", params: { cmd: "reset" } },
+				
+              });
 
-  //$scope.auction = Auction.query();
-  // $scope.auction = Auction.get({666}, function(auction) {
-	
-
-   $scope.plusOne = function(index) { 
-  $scope.products[index].likes += 1; 
-   };
- $scope.minusOne = function(index) { 
-  $scope.products[index].dislikes += 1; 
-};
-}]);
+$scope.auction = src.auction({ id: 666 });
+$scope.auctions = src.auctions({ id: 'auctions' });
+ });
+}]); 

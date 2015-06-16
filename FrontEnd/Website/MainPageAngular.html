@@ -27,21 +27,24 @@
 
 
 <div class="container-fluid">
-<div class="row">
+<div class="row" ng-controller="MainController">
   <div class="col-md-3">
 	<h3>Aktuelle Auktionen</h3>
-	<div class=black-pill>
+	<div class="debug-info">
+		{{ auctions }}
+	</div>
+	<div class="black-pill">
 		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#">Auktion 1</a></li>
-			<li><a href="#">Auktion 2</a></li>
-			<li><a href="#">Auktion 3</a></li>
-			<li><a href="#">Auktion 4</a></li>
+		<!-- einen class="active" setzen -->
+			<li ng-repeat="auction in auctions"><a href="#">{{ auction.name }}</a> 
+			
+			</li>
 		</ul>
 	</div>
   </div>
 
   
-  <div class="col-md-9" ng-controller="MainController" >.
+  <div class="col-md-9">.
 	<h3>{{ auction.auctionDetails.title }}</h3>
 	<div class="debug-info">
 	{{auction.auctionID }}
