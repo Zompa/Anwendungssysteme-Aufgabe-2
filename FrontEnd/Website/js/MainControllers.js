@@ -1,8 +1,13 @@
- app.controller('MainController', ['$scope', 'HighestBid', '$resource', function($scope, HighestBid, $resource) { 
-  HighestBid.get({ id: 666 }, function(data) {
-    $scope.highestBid = data;
+ var mainControllers = angular.module('mainControllers', ['ngResource']);
+ 
+ mainControllers.controller('RouteController', ['$scope', '$routeParams', function($scope, $routeParams) { 
+
+$scope.auctionID = $routeParams.auctionID;
+ }]); 
  
  
+  mainControllers.controller('AuctionController', ['$scope', '$resource', '$routeParams', function($scope, $resource, $routeParams) { 
+
  var src = $resource('http://localhost:8080/myapp/auction/:id',
               {id: "@id", cmd: "@cmd"}, 
               {
@@ -16,7 +21,13 @@
 				
               });
 
-$scope.auction = src.auction({ id: 666 });
+
 $scope.auctions = src.auctions({ id: 'auctions' });
- });
-}]); 
+$scope.auctionID = $routeParams.auctionID;
+$scope.auction = src.auction({ id: $scope.auctionID });
+var ID = $routeParams.auctionID;
+console.log("ID: " + ID);
+ }]); 
+
+ 
+ 

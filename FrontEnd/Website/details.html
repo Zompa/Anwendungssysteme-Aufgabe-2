@@ -1,0 +1,41 @@
+<h3>{{ auction.auctionDetails.title }}</h3>
+	<div class="debug-info">
+	{{auction.auctionID }}
+	<p>{{ auction }}</p>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5">
+				<img class="img-responsive" ng-src="{{ auction.auctionDetails.imageURL }}" alt={{ auction.auctionDetails.title }}>
+			</div>
+			<div class="col-md-5">
+				<p>{{ auction.auctionDetails.description }}</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">           
+	  <table class="table">
+		  <tr>
+			<td>Höchstgebot</td>
+			<td>{{ highestBid.value | currency }}</td>
+		  </tr>
+		  <tr>
+			<td>Höchstbietender</td>
+			<td>{{ highestBid.bidderName }}</td>
+		  </tr>
+		  <tr>
+			<td>Endet</td>
+			<td> {{ auction.auctionDetails.endDate | date }}</td>
+		  </tr>
+		</tbody>
+	  </table>
+	</div>
+	
+	<form class="form-inline" role="form">
+	  <div class="form-group">
+		<label for="bid">Mein Gebot:</label>
+		<input type="bid" class="form-control" id="bid">
+	  </div>
+	  <button type="submit" class="btn btn-default">bieten</button>
+	</form>
