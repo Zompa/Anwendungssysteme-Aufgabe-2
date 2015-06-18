@@ -1,15 +1,16 @@
-package com.example;
+package wow.anwendungssysteme;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import com.example.auctionInformation.Auction;
+import wow.anwendungssysteme.auction.Auction;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Logger;
 
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -21,7 +22,7 @@ import javax.ws.rs.core.Response;
  * Main class.
  *
  */
-public class Main {
+public class Main{
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://0.0.0.0:8080/myapp/";
 
@@ -48,7 +49,6 @@ public class Main {
 //    	System.out.println(AuctionManager.getInstance());
 //    	System.out.println(AuctionManager.getInstance().getAuction(666).getHighestBid().bidderName);
 //    	
-    	
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
@@ -60,5 +60,6 @@ public class Main {
         server.stop();
        
     }
+    
 }
 

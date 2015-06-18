@@ -14,10 +14,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.example.auctionInformation.Auction;
-import com.example.auctionInformation.AuctionDetails;
-import com.example.auctionInformation.AuctionListEntry;
-import com.example.auctionInformation.Bid;
+import wow.anwendungssysteme.auction.Auction;
+import wow.anwendungssysteme.auction.AuctionDetails;
+import wow.anwendungssysteme.auction.AuctionListEntry;
+import wow.anwendungssysteme.auction.AuctionManager;
+import wow.anwendungssysteme.auction.Bid;
 
 /**
  * Root resource (exposed at "myresource" path)

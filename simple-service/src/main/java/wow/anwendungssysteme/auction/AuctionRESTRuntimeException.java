@@ -1,4 +1,4 @@
-package com.example.auctionInformation;
+package wow.anwendungssysteme.auction;
 
 public class AuctionRESTRuntimeException extends RuntimeException{
 

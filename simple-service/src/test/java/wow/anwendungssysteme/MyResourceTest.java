@@ -1,4 +1,4 @@
-package com.example;
+package wow.anwendungssysteme;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import wow.anwendungssysteme.Main;
 import static org.junit.Assert.assertEquals;
 
 public class MyResourceTest {

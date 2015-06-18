@@ -1,4 +1,4 @@
-package com.example.auctionInformation;
+package wow.anwendungssysteme.auction;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

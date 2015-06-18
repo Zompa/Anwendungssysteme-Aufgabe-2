@@ -1,4 +1,4 @@
-package com.example.auctionInformation;
+package wow.anwendungssysteme.auction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import wow.anwendungssysteme.user.User;
+import wow.anwendungssysteme.user.UserManager;
+
 /**
  * @author Daniel
  * Contains all information about one auction
@@ -14,6 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Auction {
 
+	public int creatorId;
 	private Stack<Bid> bidHistory = new Stack<>();
 	private AuctionDetails auctionDetails;
 	public int auctionID;
@@ -22,9 +26,10 @@ public class Auction {
 		
 	}
 	
-	public Auction(AuctionDetails auctionDetails, int auctionID) {
+	public Auction(AuctionDetails auctionDetails, int auctionID, int creatorId) {
 		this.auctionDetails = auctionDetails;
 		this.auctionID = auctionID;
+		this.creatorId = creatorId;
 	}
 
 	public AuctionDetails getAuctionDetails() {
@@ -50,6 +55,10 @@ public class Auction {
 			Logger.getAnonymousLogger().info("pushed bid");
 		}
 		
+	}
+	
+	public User getCreator() {
+		return UserManager.getInstance().getUser(creatorId);
 	}
 	
 }
