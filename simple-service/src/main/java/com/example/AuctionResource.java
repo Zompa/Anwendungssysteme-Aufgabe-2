@@ -72,8 +72,8 @@ public class AuctionResource {
     
     @POST
     @Path("/{auctionID}/highestBid")
-    @Consumes({"application/xml","application/json"})
-   // @Consumes(MediaType.APPLICATION_XML)
+    @Consumes({"application/json"})
+    //@Consumes({"application/xml","application/json"})
     public void makeBid(@PathParam("auctionID") String auctionID, Bid bid) {
     	AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID)).makeBid(bid);
     }
@@ -83,6 +83,7 @@ public class AuctionResource {
    // @Produces(MediaType.APPLICATION_XML)
     @Produces({"application/xml","application/json"})
     public Bid getHighestBid(@PathParam("auctionID") String auctionID) {
+    	System.out.println("Bid requested!");
     	return AuctionManager.getInstance().getAuction(Integer.parseInt(auctionID)).getHighestBid();
     }
     

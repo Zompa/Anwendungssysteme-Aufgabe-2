@@ -35,7 +35,9 @@
 	<form class="form-inline" role="form">
 	  <div class="form-group">
 		<label for="bid">Mein Gebot:</label>
-		<input type="bid" class="form-control" id="bid">
+		<input type="bid" class="form-control" id="bid" ng-model="mybid.value">
 	  </div>
-	  <button type="submit" class="btn btn-default">bieten</button>
+	  <button type="submit" class="btn btn-default" ng-click="makeBid(mybid)">bieten</button>
+	  <button type="submit" class="btn btn-danger" ng-click="deleteAuction(mybid)">Auktion löschen <a href="#/auctionOverview"></button>
 	</form>
+	
