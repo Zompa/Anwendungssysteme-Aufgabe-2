@@ -28,4 +28,9 @@ public class User {
 	public int hashCode() {
 		return id;
 	}
+	
+	@Override
+	public String toString(){
+		return "Id: " + this.id  + " name: " + this.name;
+	}
 }

@@ -61,4 +61,8 @@ public class Auction {
 		return UserManager.getInstance().getUser(creatorId);
 	}
 	
+	@Override
+	public String toString(){
+		return "Id: " + this.auctionID  + " creatorId: " + this.creatorId;
+	}
 }

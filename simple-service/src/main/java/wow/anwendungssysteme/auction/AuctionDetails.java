@@ -41,6 +41,11 @@ public class AuctionDetails {
 		return endDate;
 	}
 	
+	@Override
+	public String toString(){
+		return "Title: " + this.title  + " Description: " + this.description + " ImageUrl: " + this.imageURL + " EndDate: " + this.endDate;
+	}
+	
 	
 	
 

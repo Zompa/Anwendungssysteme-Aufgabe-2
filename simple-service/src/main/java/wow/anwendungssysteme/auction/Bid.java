@@ -31,4 +31,9 @@ public class Bid {
 		if (anotherBid == null) return true;
 		return this.value > anotherBid.getValue();
 	}
+	
+	@Override
+	public String toString(){
+		return "bidderId: " + this.bidderId + " value: " + this.value;
+	}
 }
