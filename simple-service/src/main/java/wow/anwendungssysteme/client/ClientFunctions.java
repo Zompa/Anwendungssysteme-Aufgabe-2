@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 import wow.anwendungssysteme.auction.Auction;
 import wow.anwendungssysteme.auction.AuctionDetails;
+import wow.anwendungssysteme.auction.AuctionListEntry;
 import wow.anwendungssysteme.auction.Bid;
 import wow.anwendungssysteme.user.User;
 
@@ -48,15 +49,15 @@ public class ClientFunctions {
 		createAuction(auctionId, 21, "Titel der neuen Auktion",
 				"Beschreibungstext der neuen Auktion", "URL des Bildes ", 1000);
 		bid(auctionId, 42, 100);
-		getHighestBid(auctionId);
-		getAllAuctions();
+		System.out.println(getHighestBid(auctionId).toString());
+		System.out.println(getAllAuctions());
 		getAuctionById(auctionId);
 		updateAuction(auctionId, "geänderter Titel der neuen Auktion",
 				"geänderter Beschreibungstext der neuen Auktion",
 				"geänderte URL des Bildes ", 2000);
 		;
 		getAuctionDetailsById(auctionId);
-		deleteAuction(auctionId);
+		//deleteAuction(auctionId);
 	}
 
 	// REST POST um einen neuen User anzulegen
@@ -123,17 +124,18 @@ public class ClientFunctions {
 
 	// REST GET um das Höchstgebot einer bestimmten Auktion abzufragen
 	public static Bid getHighestBid(int auctionId) {
-		specificAuctionTarget = auctionTarget.path(Integer.toString(auctionId));
-		Invocation.Builder invocationBuilderBid = specificAuctionTarget
+		bidTarget = auctionTarget.path(Integer.toString(auctionId)).path(
+				"highestBid");
+		Invocation.Builder invocationBuilderBid = bidTarget
 				.request(MediaType.APPLICATION_JSON);
 		return invocationBuilderBid.get(Bid.class);
 	}
 
 	// REST GET um alle Auktionen abzufragen
-	public static ArrayList<Auction> getAllAuctions() {
+	public static ArrayList<AuctionListEntry> getAllAuctions() {
 		Invocation.Builder invocationBuilderAll = allAuctionsTarget
 				.request(MediaType.APPLICATION_JSON);
-		return invocationBuilderAll.get(new GenericType<ArrayList<Auction>>() {
+		return invocationBuilderAll.get(new GenericType<ArrayList<AuctionListEntry>>() {
 		});
 	}
 
@@ -150,8 +152,8 @@ public class ClientFunctions {
 			String newDescription, String newImgURL, long newEnddate) {
 		AuctionDetails details = new AuctionDetails(newTitle, newDescription,
 				newImgURL, newEnddate);
-		specificAuctionTarget = auctionTarget.path(Integer.toString(auctionId));
-		Response response = specificAuctionTarget.request(
+		detailTarget = auctionTarget.path(Integer.toString(auctionId)).path("auctionDetails");
+		Response response = detailTarget.request(
 				MediaType.APPLICATION_JSON).put(
 				Entity.entity(details, MediaType.APPLICATION_JSON));
 		System.out.println("PUT Auction Details: " + response.getStatus());

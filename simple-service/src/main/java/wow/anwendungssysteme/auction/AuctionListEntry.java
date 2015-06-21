@@ -16,4 +16,9 @@ public class AuctionListEntry {
 		this.name = auction.getAuctionDetails().title;
 		this.auctionID =auction.auctionID;
 	}
+	
+	@Override
+	public String toString(){
+		return "Id: " + this.auctionID  + " Name: " + this.name;
+	}
 }

@@ -23,6 +23,7 @@ import javax.ws.rs.InternalServerErrorException;
 
 import wow.anwendungssysteme.auction.Auction;
 import wow.anwendungssysteme.auction.AuctionDetails;
+import wow.anwendungssysteme.auction.AuctionListEntry;
 import wow.anwendungssysteme.user.User;
 
 public class MainFrame extends JFrame {
@@ -96,6 +97,9 @@ public class MainFrame extends JFrame {
 
 		JButton btnCreateAuction = new JButton("Auktion erstellen");
 		auctionCreatePanel.add(btnCreateAuction);
+		
+		JButton btnUpdateAuction = new JButton("Auktion ändern");
+		auctionCreatePanel.add(btnUpdateAuction);
 
 		// Create Bid Panel
 		JPanel BidPanel = new JPanel();
@@ -174,7 +178,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				StringBuilder allAuctionInfo = new StringBuilder();
 
-				for (Auction act : ClientFunctions.getAllAuctions()) {
+				for (AuctionListEntry act : ClientFunctions.getAllAuctions()) {
 					allAuctionInfo.append(act.toString() + "\n");
 				}
 				outputText.setText(allAuctionInfo.toString());
@@ -186,6 +190,29 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Auction a = getAuctionData();
 				ClientFunctions.createAuction(a);
+			}
+		});
+		
+		btnUpdateAuction.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int auctionId = 0;
+				long endDate = 0;
+				try {
+					auctionId = Integer.parseInt(auctionIdField.getText());
+					endDate = Long.parseLong(endtimeField.getText());
+				} catch (NumberFormatException numEx) {
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"Bitte geben Sie eine Ganzzahl ein (ID, Ersteller, Endzeitpunkt).",
+									"Fehler", JOptionPane.ERROR_MESSAGE);
+				}
+				String title = titleField.getText();
+				String description = descriptionField.getText();
+				String imageURL = imgUrlField.getText();
+
+				ClientFunctions.updateAuction(auctionId, title, description, imageURL, endDate);
 			}
 		});
 
