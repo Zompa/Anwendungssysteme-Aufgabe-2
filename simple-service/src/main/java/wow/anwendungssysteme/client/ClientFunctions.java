@@ -103,6 +103,13 @@ public class ClientFunctions {
 				.post(Entity.entity(auction, MediaType.APPLICATION_JSON));
 		System.out.println("POST Auction: " + response.getStatus());
 	}
+	
+	// REST POST um eine neue Auktion anzulegen
+	public static void createAuction(Auction auction) {
+		Response response = auctionTarget.request(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(auction, MediaType.APPLICATION_JSON));
+		System.out.println("POST Auction: " + response.getStatus());
+	}
 
 	// REST POST um ein Gebot zu einer bestimmten Auktion abzugeben
 	public static void bid(int auctionId, int bidderId, int value) {
